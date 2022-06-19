@@ -28,6 +28,7 @@ public class PacienteController {
 
     @GetMapping
     public ResponseEntity<List<Paciente>> findAll(){
+
         return ResponseEntity.ok().body(pacienteService.findAll());
     }
 

@@ -35,7 +35,10 @@ public class PacienteService {
 
     }
 
+
+
     public List<Paciente> findAll(){
+
         return pacienteRepository.findAll();
     }
 
@@ -47,8 +50,6 @@ public class PacienteService {
         }
         return p.get();
     }
-
-
 
 
     private void existCpf(String cpf){

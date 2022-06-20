@@ -27,6 +27,7 @@ public class VacinaController {
 
     @GetMapping
     public ResponseEntity<List<Vacina>> findAll(){
+
         return ResponseEntity.ok().body(vacinaService.findAll());
     }
 
@@ -44,7 +45,7 @@ public class VacinaController {
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<Vacina> update(@PathVariable Long id, @RequestBody Vacina vacina){
-         Vacina vacinaEditada = vacinaService.update(id, vacina);
+         Vacina vacinaEditada = vacinaService.update(vacina);
          return ResponseEntity.ok().body(vacinaEditada);
     }
 }

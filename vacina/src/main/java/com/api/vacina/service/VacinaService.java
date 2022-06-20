@@ -32,7 +32,7 @@ public class VacinaService {
         }
     }
 
-    public Vacina update(Long id, Vacina vacina){
+    public Vacina update(Vacina vacina){
         Vacina vacinaEditada = findByName(vacina.getNome_vacina());
         vacinaEditada.setNome_vacina(vacina.getNome_vacina());
         vacinaEditada.setMarca(vacina.getMarca();
@@ -54,9 +54,9 @@ public class VacinaService {
         if (!vacinaEncontrada.isPresent()) {
             throw new ObjectNotFoundException("Vacina não encontrada");
         }
-        else{
+
             return vacinaEncontrada.get();
-        }
+
     }
 
     public Vacina deleteById(Vacina vacina) {

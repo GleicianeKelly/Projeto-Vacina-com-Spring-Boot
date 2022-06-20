@@ -37,4 +37,18 @@ public class PacienteController {
         return ResponseEntity.ok().body(pacienteService.findByName(name.toLowerCase(Locale.ROOT)));
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Paciente> delete(@PathVariable Long id, @RequestBody Paciente paciente){
+        Paciente pacienteDeletado = pacienteService.deleteById(paciente);
+        return ResponseEntity.ok().body(paciente);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Paciente> update(@PathVariable Long id, @RequestBody Paciente paciente){
+        Paciente pacienteEditado = pacienteService.update(paciente);
+        return ResponseEntity.ok().body(pacienteEditado);
+    }
+
+
+
 }

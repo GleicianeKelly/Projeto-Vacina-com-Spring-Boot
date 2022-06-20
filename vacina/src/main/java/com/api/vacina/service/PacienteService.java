@@ -51,6 +51,28 @@ public class PacienteService {
         return p.get();
     }
 
+    public Paciente findById(Paciente paciente){
+        Optional<Paciente> pacienteEncontrado = pacienteRepository.findById(paciente.getId_paciente());
+        if(!pacienteEncontrado.isPresent()){
+            throw new ObjectNotFoundException("Paciente não encontrado! ");
+        }
+        return pacienteEncontrado.get();
+    }
+
+    public Paciente deleteById(Paciente paciente){
+        Paciente pacienteDeletado = findById(paciente);
+        pacienteRepository.delete(pacienteDeletado);
+        return pacienteDeletado;
+    }
+
+    public Paciente update(Paciente paciente){
+        Paciente pacienteEncontrado = findByName(paciente.getNomePaciente());
+        pacienteEncontrado.setNomePaciente(paciente.getNomePaciente());
+        pacienteEncontrado.setEndereco(paciente.getEndereco());
+        pacienteEncontrado.setCpf(paciente.getCpf());
+        return pacienteRepository.save(pacienteEncontrado);
+    }
+
 
     private void existCpf(String cpf){
         if(pacienteRepository.existsByCpf(cpf)){

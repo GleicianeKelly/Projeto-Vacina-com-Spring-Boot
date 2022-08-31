@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -25,9 +27,9 @@ public class Atendimento implements Serializable {
     @JoinColumn(name = "id_paciente")
     private Paciente paciente;
 
-    @ManyToOne
-    @JoinColumn(name = "id_vacina")
-    private Vacina vacina;
+    @OneToMany
+    private List<Vacina> vacina = new ArrayList<>();
+
     private Date dt_atendimento;
 
 

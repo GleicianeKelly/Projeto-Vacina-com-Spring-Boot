@@ -1,5 +1,6 @@
 package com.api.vacina.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,8 @@ public class Paciente implements Serializable {
     private String endereco;
 
 
+    @OneToMany(mappedBy = "paciente")
+    private List<Atendimento> atendimento = new ArrayList<>();
 
 
 }

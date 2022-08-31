@@ -21,7 +21,7 @@ public class VacinaService {
     public Vacina save(Vacina vacina) {
         try{
             existMarca(vacina.getMarca());
-            vacina.setNome_vacina(vacina.getNome_vacina().toLowerCase(Locale.ROOT));
+            vacina.setNomeVacina(vacina.getNomeVacina().toLowerCase(Locale.ROOT));
             return vacinaRepository.save(vacina);
         }
         catch(ObjectConflictException e){
@@ -33,14 +33,14 @@ public class VacinaService {
     }
 
     public Vacina update(Vacina vacina){
-        Vacina vacinaEditada = findByName(vacina.getNome_vacina());
-        vacinaEditada.setNome_vacina(vacina.getNome_vacina());
-        vacinaEditada.setMarca(vacina.getMarca();
+        Vacina vacinaEditada = findByName(vacina.getNomeVacina());
+        vacinaEditada.setNomeVacina(vacina.getNomeVacina());
+        vacinaEditada.setMarca(vacina.getMarca());
         return vacinaRepository.save(vacinaEditada);
     }
 
     public Vacina findByName(String name) {
-        Optional<Vacina> vacinaEncontrada = vacinaRepository.findByName(name);
+        Optional<Vacina> vacinaEncontrada = vacinaRepository.findByNomeVacina(name);
         if (!vacinaEncontrada.isPresent()) {
             throw new ObjectNotFoundException("Vacina não encontrada");
         }
@@ -71,8 +71,8 @@ public class VacinaService {
     }
 
     public void existMarca(String marca){
-        if(vacinaRepository.existMarca(marca)){
-            throw new ObjectConflictException("Conflict: Vacina alreads exist")
+        if(vacinaRepository.existsByMarca(marca)){
+            throw new ObjectConflictException("Conflict: Vacina já existe");
         }
     }
 }
